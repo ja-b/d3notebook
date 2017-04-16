@@ -36,6 +36,7 @@ class D3Notebook(object):
     def _render(self, name, *data):
 
         js = self._js[name]
+        data = [self._vars[d] for d in data]
         html = "<g></g>"
         data = data[0]
         js = self._bind_js(js, "\"" + "g" + "\"", data)
