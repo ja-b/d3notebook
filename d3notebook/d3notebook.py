@@ -35,13 +35,13 @@ class D3Notebook(object):
 
     def _render(self, name, *data):
 
-        js = self._js[name]
+        js, css = self._js[name]
         data = [self._vars[d] for d in data]
         html = "<g></g>"
         data = data[0]
         js = self._bind_js(js, "\"" + "g" + "\"", data)
 
-        html_string = "<script>{}</script> \n {}".format(js, html)
+        html_string = "<style>{}</style>\n <script>{}</script>\n {}".format(css, js, html)
         display(HTML(html_string))
 
     def _bind_js(self, js, selector, data):
@@ -70,4 +70,7 @@ class D3Notebook(object):
         :return:
         """
         for name, javascript in js.iteritems():
-            self._js[name] = javascript
+            if not isinstance(javascript, basestring):
+                self._js[name] = javascript
+            else:
+                self._js[name] = (javascript, "")
