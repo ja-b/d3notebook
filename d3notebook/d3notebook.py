@@ -21,13 +21,14 @@ class D3Notebook(object):
         # Automatically Add D3 Here
         self._include_d3()
 
-    def render(self, name, data):
+    def render(self, name, *data):
         """
         Renders js according to name. Binds data as data-element
         :param name:
         :return:
         """
         self._include_d3()
+        data = [self._vars[d] for d in data][0]
         self._render(name, self._convert_data(data))
 
     def _convert_data(self, data):
@@ -56,7 +57,6 @@ class D3Notebook(object):
     def _render(self, name, data):
 
         js, css = self._js[name]
-        data = [self._vars[d] for d in data]
         render_id = "render" + str(self._get_id())
         html = "<g id=\"{}\"></g>".format(render_id)
         data = data[0]
