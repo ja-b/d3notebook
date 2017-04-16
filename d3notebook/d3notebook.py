@@ -59,7 +59,6 @@ class D3Notebook(object):
         js, css = self._js[name]
         render_id = "render" + str(self._get_id())
         html = "<g id=\"{}\"></g>".format(render_id)
-        data = data[0]
         js = self._bind_js(js, "\"" + "g#{}".format(render_id) + "\"", data)
 
         html_string = "<g>{}\n <style>{}</style>\n <script>{}</script></g>".format(html, css, js)
