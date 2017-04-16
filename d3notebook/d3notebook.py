@@ -2,12 +2,24 @@ from IPython.core.display import Javascript, display, HTML
 import re
 
 class D3Notebook(object):
+
+    render_id = 0
+
+    @classmethod
+    def _get_id(cls):
+
+        cls.render_id += 1
+        return cls.render_id
+
     def __init__(self, ver="3.5.17"):
         self._vars = {}
         self._js = {}
         self._ver = ver
 
         self._included_js = False
+
+        # Automatically Add D3 Here
+        self._include_d3()
 
     def render(self, name, *data):
         """
@@ -39,7 +51,7 @@ class D3Notebook(object):
         data = [self._vars[d] for d in data]
         html = "<g></g>"
         data = data[0]
-        js = self._bind_js(js, "\"" + "g" + "\"", data)
+        js = self._bind_js(js, "\"" + "g#{}".format(self._get_id()) + "\"", data)
 
         html_string = "<g>{}\n <style>{}</style>\n <script>{}</script></g>".format(html, css, js)
         display(HTML(html_string))
