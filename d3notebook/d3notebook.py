@@ -23,13 +23,13 @@ class D3Notebook(object):
             js = """
             requirejs.config({
                 paths: {
-                    d3: "//cdnjs.cloudflare.com/ajax/libs/d3/{}/d3"
+                    d3: "//cdnjs.cloudflare.com/ajax/libs/d3/""" + str(self._ver) + """/d3"
                 }
             });
             require(['d3'], function(d3) {
                 window.d3 = d3;
             });
-            """.format(self._ver)
+            """
             display(Javascript(js))
             self._included_js = True
 
