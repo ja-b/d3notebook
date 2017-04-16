@@ -21,14 +21,22 @@ class D3Notebook(object):
         # Automatically Add D3 Here
         self._include_d3()
 
-    def render(self, name, *data):
+    def render(self, name, data):
         """
         Renders js according to name. Binds data as data-element
         :param name:
         :return:
         """
         self._include_d3()
-        self._render(name, *data)
+        self._render(name, self._convert_data(data))
+
+    def _convert_data(self, data):
+        import pandas
+        if isinstance(data, list) or isinstance(data, tuple):
+            return list(data)
+        if isinstance(data, pandas.DataFrame):
+            return data.to_json()
+        #TODO Throw Exception Here
 
     def _include_d3(self):
         if not self._included_js:
@@ -45,7 +53,7 @@ class D3Notebook(object):
             display(Javascript(js))
             self._included_js = True
 
-    def _render(self, name, *data):
+    def _render(self, name, data):
 
         js, css = self._js[name]
         data = [self._vars[d] for d in data]
