@@ -36,7 +36,7 @@ class D3Notebook(object):
         if isinstance(data, list) or isinstance(data, tuple):
             return list(data)
         if isinstance(data, pandas.DataFrame):
-            return data.to_json()
+            return data.to_json(orient="records")
         #TODO Throw Exception Here
 
     def _include_d3(self):
