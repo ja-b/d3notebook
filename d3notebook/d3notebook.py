@@ -41,7 +41,7 @@ class D3Notebook(object):
         data = data[0]
         js = self._bind_js(js, "\"" + "g" + "\"", data)
 
-        html_string = "{}\n <style>{}</style>\n <script>{}</script>".format(html, css, js)
+        html_string = "<g>{}\n <style>{}</style>\n <script>{}</script></g>".format(html, css, js)
         display(HTML(html_string))
 
     def _bind_js(self, js, selector, data):
