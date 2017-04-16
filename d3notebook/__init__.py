@@ -1,1 +1,1 @@
-from d3notebook import *
+from d3notebook import D3Notebook
