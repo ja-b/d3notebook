@@ -23,7 +23,7 @@ class D3Notebook(object):
             js = """
             requirejs.config({
                 paths: {
-                    d3: "//cdnjs.cloudflare.com/ajax/libs/d3/""" + str(self._ver) + """/d3"
+                    d3: "//cdnjs.cloudflare.com/ajax/libs/d3/""" + str(self._ver) + """/d3.min"
                 }
             });
             require(['d3'], function(d3) {
@@ -40,8 +40,8 @@ class D3Notebook(object):
         data = data[0]
         js = self._bind_js(js, "g", data)
 
-        html = "{} <script>{}</script>".format(html, js)
-        display(HTML(html))
+        html_string = "{} <script>{}</script>".format(html, js)
+        display(HTML(html_string))
 
     def _bind_js(self, js, selector, data):
 
