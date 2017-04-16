@@ -46,8 +46,8 @@ class D3Notebook(object):
 
     def _bind_js(self, js, selector, data):
 
-        selector_regex = r'(d3\.select\()(.*)(\))'
-        data_regex = r'(\.data\()(.*)(\))'
+        selector_regex = r'(d3\.select\()([0-9a-zA-Z#\.]*)(\))'
+        data_regex = r'(\.data\()([0-9a-zA-Z#\.]*)(\))'
 
         js = re.sub(selector_regex, r'\1{}\3'.format(selector), js)
         js = re.sub(data_regex, r'\1{}\3'.format(data), js)
