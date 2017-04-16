@@ -19,7 +19,7 @@ def get_install_requirements(path):
 setup(
     name="d3notebook",
     packages=find_packages(),
-    version="0.0.7",
+    version="0.0.8",
     author="Jacob Bennett",
     description="test",
     url='http://github.com',
