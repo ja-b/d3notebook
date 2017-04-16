@@ -16,7 +16,7 @@ class D3Notebook(object):
         :return:
         """
         self._include_d3()
-        self._render(name=name, *data)
+        self._render(name, *data)
 
     def _include_d3(self):
         if not self._included_js:
